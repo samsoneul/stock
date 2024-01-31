@@ -6,7 +6,7 @@ const Searchresults = ({ results }) => {
         return null; // or return a default message or loading indicator
       }
   return (
-    <ul className="absolute top-12 border-2 w-full rounded-md h-64 overflow-y-scroll bg-white border-neutral-200">
+    <ul className="absolute top-12 border-2 w-full rounded-md h-64 overflow-y-scroll bg-white border-neutral-200 custom-scrollbar">
       {results.map((item) => {
         return (
           <li

@@ -28,7 +28,7 @@ const Search = () => {
         type="text"
         value={input}
         onKeyUp={(event) => {
-          if (event.key !=null) {
+          if (event.key != null) {
             UpdateBestMatches();
           }
         }}
@@ -44,7 +44,9 @@ const Search = () => {
       >
         <MagnifyingGlassIcon className="h-5 text-white " />
       </button>
-      {input && bestMatches.length>0?<Searchresults results={bestMatches}/> :null }
+      {input && bestMatches.length > 0 ? (
+        <Searchresults results={bestMatches} />
+      ) : null}
     </div>
   );
 };
