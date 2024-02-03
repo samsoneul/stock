@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      borderWidth: {
+        1: "1px",
+      },
       fontFamily: [
         ["Quicksand","sans-serif"],
       ],

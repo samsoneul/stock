@@ -15,10 +15,10 @@ const Details = ({details}) => {
     return (number / 1000).toFixed(2);
   };
   return (
-    <div>
+    
       <Card>
         {" "}
-        <ul className="w-full h-full flex flex-col justify-between divide-y-1 space-y-3 ">
+        <ul className="w-full h-full overflow-scroll custom-scrollbar flex flex-col justify-between divide-gray-400 divide-y-3   ">
           {Object.keys(detailsList).map((item) => {
             return (
               <li
@@ -37,7 +37,7 @@ const Details = ({details}) => {
           })}
         </ul>
       </Card>
-    </div>
+    
   );
 };
 

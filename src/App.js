@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import Dasboard from './components/Dasboard';
 import logo from './logo.svg';
+import ThemeContext from './Theme/Theme';
 
 
 function App() {
+  const [darkMode,setDarkMOde]=useState(false)
+
   return (
-    <div className=' '>
-     <Dasboard/>
-    </div>
+    <ThemeContext.Provider value={{ darkMode,setDarkMOde }}>
+      <Dasboard/>
+    </ThemeContext.Provider>
     
   );
 }
