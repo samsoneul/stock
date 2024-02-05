@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { mockSearchResults } from "../constants";
 import {
   XMarkIcon,
@@ -6,7 +7,9 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import Searchresults from "./Searchresults";
+import ThemeContext from "../Theme/Theme";
 const Search = () => {
+  const { darkMode } = useContext(ThemeContext);
   const [input, setInput] = useState("");
   const [bestMatches, setBestMatches] = useState(mockSearchResults.result);
 
@@ -18,13 +21,19 @@ const Search = () => {
     setBestMatches(mockSearchResults.result);
   };
   return (
-    <div className="flex items-center my-4 border-2 rounded-md relative z-50 w-96 bg-white border-neutral-200 ">
+    <div
+      className={`flex items-center my-4 border-2 rounded-md relative z-50 w-96  border-neutral-200 ${
+        darkMode ? "bg-[#443873] border-gray-500" : "bg-white"
+      } `}
+    >
       <input
         onChange={(event) => {
           setInput(event.target.value);
         }}
         placeholder="search stock...."
-        className="w-full px-4 py-2 focus:outline-none rounded-md"
+        className={`w-full px-4 py-2 focus:outline-none rounded-md ${
+          darkMode ? "bg-[#443873] border-gray-500" : "bg-white"
+        }`}
         type="text"
         value={input}
         onKeyUp={(event) => {

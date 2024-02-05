@@ -1,17 +1,19 @@
-import { useState } from 'react';
-import Dasboard from './components/Dasboard';
-import logo from './logo.svg';
-import ThemeContext from './Theme/Theme';
-
+import { useState } from "react";
+import Dasboard from "./components/Dasboard";
+import logo from "./logo.svg";
+import ThemeContext from "./Theme/Theme";
+import StockContext from "./Theme/StockConstex";
 
 function App() {
-  const [darkMode,setDarkMOde]=useState(false)
+  const [darkMode, setDarkMode] = useState(true);
+  const [stockValue, setStockValue] = useState("FB");
 
   return (
-    <ThemeContext.Provider value={{ darkMode,setDarkMOde }}>
-      <Dasboard/>
+    <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      <StockContext.Provider value={{ stockValue, setStockValue }}>
+        <Dasboard />
+      </StockContext.Provider>
     </ThemeContext.Provider>
-    
   );
 }
 

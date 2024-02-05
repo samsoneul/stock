@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import ThemeContext from "../Theme/Theme";
 
 const Searchresults = ({ results }) => {
+  const{darkMode}=useContext(ThemeContext)
     if (!results) {
         // Handle the case where results is undefined or null
         return null; // or return a default message or loading indicator
       }
   return (
-    <ul className="absolute top-12 border-2 w-full rounded-md h-64 overflow-y-scroll bg-white border-neutral-200 custom-scrollbar">
+    <ul className={`absolute top-12 border-2 w-full rounded-md h-64 overflow-y-scroll bg-white border-neutral-200 custom-scrollbar ${darkMode?"bg-[#07011f] border-[#44387307011f]":"bg-white"}`}>
       {results.map((item) => {
         return (
           <li
