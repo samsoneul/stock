@@ -5,6 +5,7 @@ import ThemeContext from "./Theme/Theme";
 import StockContext from "./Theme/StockConstex";
 
 function App() {
+  
   const [darkMode, setDarkMode] = useState(true);
   const [stockValue, setStockValue] = useState("FB");
 
