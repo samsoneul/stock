@@ -17,7 +17,7 @@ import ChartFIlter from "./ChartFIlter";
 
 import { chartsConfig } from "../config";
 const Chart = () => {
-  const [data, setData] = useState(mockHistoricalData);
+  const [data] = useState(mockHistoricalData);
   const [filter, setFIlter] = useState("1W");
   const formatData = () => {
     return data.c.map((item, index) => {
