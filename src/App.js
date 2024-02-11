@@ -7,11 +7,11 @@ import StockContext from "./Theme/StockConstex";
 function App() {
   
   const [darkMode, setDarkMode] = useState(true);
-  const [stockValue, setStockValue] = useState("FB");
+  const [stockSymbol, setStockSymbol] = useState("FB");
 
   return (
     <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
-      <StockContext.Provider value={{ stockValue, setStockValue }}>
+      <StockContext.Provider value={{ stockSymbol, setStockSymbol }}>
         <Dasboard />
       </StockContext.Provider>
     </ThemeContext.Provider>

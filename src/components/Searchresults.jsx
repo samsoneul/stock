@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import ThemeContext from "../Theme/Theme";
+import StockContext from "../Theme/StockConstex";
 
 const Searchresults = ({ results }) => {
   const { darkMode } = useContext(ThemeContext);
+  const{setStockSymbol}=useContext(StockContext);
+
   if (!results) {
     // Handle the case where results is undefined or null
     return null; // or return a default message or loading indicator
@@ -16,6 +19,9 @@ const Searchresults = ({ results }) => {
       {results.map((item) => {
         return (
           <li
+          onClick={()=>{
+            setStockSymbol(item.symbol)
+          }}
             key={item.symbol}
             className="cursor-pointer p-4 m-2 flex items-center justify-between rounded-md hover:bg-indigo-200"
           >
