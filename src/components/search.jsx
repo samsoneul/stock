@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { mockSearchResults } from "../constants";
+
 import {
   XMarkIcon,
-  MagnifyingGlassCircleIcon,
+  
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import Searchresults from "./Searchresults";

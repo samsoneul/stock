@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { mockHistoricalData } from "../constants";
 import Card from "./card";
 import {
-  LineChart,
-  Line,
+  
   XAxis,
   YAxis,
-  CartesianGrid,
+  
   Tooltip,
-  Legend,
+  
   Area,
   ResponsiveContainer,
   AreaChart,

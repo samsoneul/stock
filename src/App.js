@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Dasboard from "./components/Dasboard";
-import logo from "./logo.svg";
+
 import ThemeContext from "./Theme/Theme";
 import StockContext from "./Theme/StockConstex";
 
