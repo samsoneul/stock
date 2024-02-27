@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./card";
 
-const Details = ({details}) => {
+const Details = ({details,nextDayP}) => {
   const detailsList = {
     name: "Name",
     country: "Country",
@@ -10,6 +10,7 @@ const Details = ({details}) => {
     ipo: "IPO Date",
     marketCapitalization: "Market Capitalization",
     finnhubIndustry: "Industry",
+    nextDayPredction: "Next Day Predction",
   };
   const milTObill = (number) => {
     return (number / 1000).toFixed(2);
@@ -29,8 +30,8 @@ const Details = ({details}) => {
                 <span> {detailsList[item]} </span>
                 <span>
                   {item === "marketCapitalization"
-                    ? `${milTObill(details[item])}B`
-                    : details[item]}
+                    ? `${milTObill(details[item])}B`:item==="nextDayPredction"?nextDayP
+                    : details[item] }
                 </span>
               </li>
             );

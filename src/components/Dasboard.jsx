@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 
-
 import Header from "./Header";
 import Details from "./details";
 import Overview from "./Overview";
@@ -8,13 +7,14 @@ import Chart from "./Chart";
 import ThemeIcon from "./themeIcon";
 import ThemeContext from "../Theme/Theme";
 import StockContext from "../Theme/StockConstex";
-import { fetchStockDetails, fetchQuote } from "../api/stock-api";
+import { fetchStockDetails, fetchQuote, fetchNext } from "../api/stock-api";
 
 const Dasboard = () => {
   const { darkMode } = useContext(ThemeContext);
   const { stockSymbol } = useContext(StockContext);
   const [stockDetails, setStockDetails] = useState({});
   const [quote, setQuote] = useState({});
+  const [nextDay, setNext] = useState({});
 
   useEffect(() => {
     const udpateStockDetails = async () => {
@@ -31,10 +31,21 @@ const Dasboard = () => {
         const result = await fetchQuote(stockSymbol);
         setQuote(result);
       } catch (error) {
-        setQuote([]);
+        setQuote(0);
         console.log(error);
       }
     };
+    const updateNextDay = async () => {
+      try {
+        const result = await fetchNext(stockSymbol);
+        setNext(result);
+        console.log(result.c);
+      } catch (error) {
+        setNext(0);
+        console.log(error);
+      }
+    };
+    updateNextDay();
     udpateStockDetails();
     updateStockOverview();
   }, [stockSymbol]);
@@ -52,7 +63,6 @@ const Dasboard = () => {
         <Chart />
       </div>
 
-
       <div className="row-span-2">
         <Overview
           symbol={stockSymbol}
@@ -63,7 +73,7 @@ const Dasboard = () => {
         />
       </div>
       <div className="row-span-2 xl:row-span-4">
-        <Details details={stockDetails} />
+        <Details details={stockDetails} nextDayP={nextDay.c} />
       </div>
     </div>
   );
