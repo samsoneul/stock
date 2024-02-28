@@ -39,7 +39,7 @@ const Dasboard = () => {
       try {
         const result = await fetchNext(stockSymbol);
         setNext(result);
-        console.log(result.c);
+        console.log(result);
       } catch (error) {
         setNext(0);
         console.log(error);
@@ -73,7 +73,7 @@ const Dasboard = () => {
         />
       </div>
       <div className="row-span-2 xl:row-span-4">
-        <Details details={stockDetails} nextDayP={nextDay.c} />
+        <Details details={stockDetails} nextDayP={nextDay.np} />
       </div>
     </div>
   );
