@@ -1,25 +1,30 @@
 import React, { useState } from "react";
-import { mockHistoricalData } from "../constants";
+import { AreaChartData, Piedata } from "../constants";
+import renderAreaChart from "../charts/Areachart";
 import Card from "./card";
 import {
-  
   XAxis,
   YAxis,
-  
   Tooltip,
-  
   Area,
   ResponsiveContainer,
   AreaChart,
 } from "recharts";
 import { convertUnixTimeStampToDate } from "../Helpers/Date-Helper";
-import ChartFIlter from "./ChartFIlter";
-
+import ChartFilter from "./ChartFIlter";
 import { chartsConfig } from "../config";
+import renderRadarChart from "../charts/Radarchart";
+import { Radardata } from "../constants";
+import RenderPieChart from "../charts/Piechart";
+
 const Chart = () => {
-  const [data] = useState(mockHistoricalData);
-  const [filter, setFIlter] = useState("1W");
-  const formatData = () => {
+  const [data] = useState(AreaChartData);
+  const [filter, setFilter] = useState("1W");
+  const [chartType, setChartType] = useState("Pie");
+  let xData = "date";
+  let yData = ["dataMin", "dataMax"];
+
+  const formatData = (data) => {
     return data.c.map((item, index) => {
       return {
         value: item.toFixed(2),
@@ -27,44 +32,35 @@ const Chart = () => {
       };
     });
   };
+  const chartComponents = {
+    Area: () => renderAreaChart(data, xData, yData),
+    Radar: () => renderRadarChart(Radardata),
+    Pie:()=> RenderPieChart(Piedata)
+    // Add more chart types here as needed
+  };
   return (
     <Card>
-      <ul className="flex absolute top-2 right-2 z-40">
-        {Object.keys(chartsConfig).map((item) => {
-          return(
+      <ul className="flex absolute top-1 right-2 z-40 ">
+        {Object.keys(chartsConfig).map((item) => (
           <li key={item}>
-            <ChartFIlter
+            <ChartFilter
               text={item}
               active={filter === item}
-              onClick={() => {
-                setFIlter(item);
-              }}
+              onClick={() => setFilter(item)}
             />
-          </li>)
-        })}
+          </li>
+        ))}
       </ul>
-      <ResponsiveContainer>
-        <AreaChart data={formatData(data)}>
-          <Area
-            type="monotone"
-            dataKey="value"
-            stroke="#312e81"
-            strokeWidth={0.5}
-            fillOpacity={1}
-            fill="url(#chartColor)"
-          />
-          <defs>
-            <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#b189f5" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#b189f5" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <Tooltip />
-          <XAxis dataKey={"date"} />
-          <YAxis domain={["dataMin", "dataMax"]} />
-        </AreaChart>
+      <ResponsiveContainer
+        className="mt-4
+      "
+      >
+        {chartComponents[chartType] ? (
+          chartComponents[chartType]()
+        ) : (
+          <div>No chart available</div>
+        )}
       </ResponsiveContainer>
-      
     </Card>
   );
 };
